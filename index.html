@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sevgi Dolu Bir Hediye | Senin İçin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff9f9;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .dancing-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .heart-path {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .message-box {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .message-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+        }
+        
+        #polaroid {
+            transition: all 0.5s ease;
+        }
+        
+        #polaroid:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Animated Background Hearts -->
+    <div class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+        <svg class="heart-path absolute top-20 left-10 opacity-20" width="40" height="40" viewBox="0 0 24 24">
+            <path fill="red" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <svg class="heart-path absolute top-1/4 right-20 opacity-20" width="50" height="50" viewBox="0 0 24 24">
+            <path fill="red" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <svg class="heart-path absolute bottom-20 right-10 opacity-20" width="30" height="30" viewBox="0 0 24 24">
+            <path fill="red" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+    </div>
+
+    <main class="relative z-10 container mx-auto px-4 py-12 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <h1 class="dancing-font text-5xl md:text-6xl text-pink-600 mb-4">Senin İçin Bir Hediye</h1>
+            <p class="text-gray-600 italic">Sevgililer Günü & Doğum Günü Özel</p>
+        </header>
+        
+        <!-- Polaroid Photo Frame -->
+        <div id="polaroid" class="mx-auto w-64 bg-white p-4 shadow-lg rotate-3">
+            <div class="h-64 w-full bg-gray-200 flex items-center justify-center">
+                <img src="https://cdn.discordapp.com/attachments/1402561906329518170/1402561922825457754/image.png?ex=68945d14&is=68930b94&hm=d8a7099f27a026c855ce6889fd243e042cb1253a497907b3b9d6eb4d01ac363f&" alt="Mutlu çift fotoğrafı: Genç bir çift gülümseyerek birbirine bakıyor, arka planda gün batımı" class="w-full h-full object-cover" onerror="this.src='https://cdn.discordapp.com/attachments/1402561906329518170/1402561922825457754/image.png?ex=68945d14&is=68930b94&hm=d8a7099f27a026c855ce6889fd243e042cb1253a497907b3b9d6eb4d01ac363f&'">
+            </div>
+            <p class="mt-2 text-center dancing-font text-xl text-gray-700">Biz</p>
+        </div>
+        
+        <!-- Love Letter -->
+        <div class="mt-20 bg-white bg-opacity-90 rounded-xl shadow-lg overflow-hidden border border-pink-200">
+            <div class="bg-pink-600 p-4 text-white">
+                <h2 class="dancing-font text-3xl text-center">Sevgili <span id="partner-name">[İsim]</span>,</h2>
+            </div>
+            <div class="p-6">
+                <p id="love-letter" class="text-gray-700 mb-4">
+                    Bugün senin özel günün ve ben ne kadar şanslı olduğumu düşünmeden edemiyorum. Hayatıma girdiğin andan itibaren her şey daha güzel, daha anlamlı oldu...
+                </p>
+                <div class="text-center">
+                    <button id="generate-letter" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full transition duration-300">
+                        Mektubu Aç
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Memory Boxes -->
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="message-box bg-white p-6 rounded-lg shadow-md border-t-4 border-pink-400">
+                <h3 class="dancing-font text-2xl text-pink-600 mb-3">İlk Buluşmamız</h3>
+                <p class="text-gray-600 mb-4">O günü asla unutmayacağım. <span id="memory-date">[Tarih]</span>'de ilk kez buluştuğumuzda...</p>
+                <button class="memory-btn text-pink-500 text-sm hover:text-pink-700">Anlat</button>
+                <div id="memory1-detail" class="hidden mt-3 text-gray-700"></div>
+            </div>
+            
+            <div class="message-box bg-white p-6 rounded-lg shadow-md border-t-4 border-red-400">
+                <h3 class="dancing-font text-2xl text-red-500 mb-3">En Sevdiğim Anı</h3>
+                <p class="text-gray-600 mb-4">Beraber geçirdiğimiz en özel anı hatırlıyor musun?</p>
+                <button class="memory-btn text-red-500 text-sm hover:text-red-700">Anlat</button>
+                <div id="memory2-detail" class="hidden mt-3 text-gray-700"></div>
+            </div>
+            
+            <div class="message-box bg-white p-6 rounded-lg shadow-md border-t-4 border-purple-400">
+                <h3 class="dancing-font text-2xl text-purple-600 mb-3">Hayallerimiz</h3>
+                <p class="text-gray-600 mb-4">Beraber inşa etmek istediğimiz gelecek...</p>
+                <button class="memory-btn text-purple-600 text-sm hover:text-purple-800">Anlat</button>
+                <div id="memory3-detail" class="hidden mt-3 text-gray-700"></div>
+            </div>
+        </div>
+        
+        <!-- Countdown Timer -->
+        <div class="mt-16 bg-gradient-to-r from-pink-400 to-purple-500 text-white rounded-xl p-6 text-center">
+            <h3 class="dancing-font text-3xl mb-4">İyi ki varsın</h3>
+            <div id="countdown" class="flex justify-center gap-4">
+                <div class="bg-white bg-opacity-20 p-3 rounded-lg w-20">
+                    <div id="days" class="text-3xl font-bold">0.1</div>
+                    <div class="text-sm">Gün</div>
+                </div>
+                <div class="bg-white bg-opacity-20 p-3 rounded-lg w-20">
+                    <div id="hours" class="text-3xl font-bold">00</div>
+                    <div class="text-sm">Saat</div>
+                </div>
+                <div class="bg-white bg-opacity-20 p-3 rounded-lg w-20">
+                    <div id="minutes" class="text-3xl font-bold">00</div>
+                    <div class="text-sm">Dakika</div>
+                </div>
+                <div class="bg-white bg-opacity-20 p-3 rounded-lg w-20">
+                    <div id="seconds" class="text-3xl font-bold">00</div>
+                    <div class="text-sm">Saniye</div>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    
+    <!-- Floating Hearts Animation -->
+    <div class="fixed bottom-8 right-8 z-20">
+        <button id="heart-button" class="bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+        </button>
+        <div id="hearts-container" class="absolute bottom-full right-0 w-64 h-64 pointer-events-none"></div>
+    </div>
+
+    <script>
+        // Personalization variables (to be replaced with actual data)
+        const partnerData = {
+            name: "Karım Elif",
+            firstDate: "15.05.2022",
+            nextDate: "2024-02-20T19:00:00",
+            favoriteMemory: "Geçen yaz deniz kenarında geçirdiğimiz o harika günbatımı...",
+            dreams: "Beraber seyahat edeceğimiz, yeni yerler keşfedeceğimiz ve bir ev sahibi olacağımız güzel bir gelecek."
+        };
+        
+        // DOM Elements
+        const partnerNameEl = document.getElementById('partner-name');
+        const loveLetterEl = document.getElementById('love-letter');
+        const memoryDateEl = document.getElementById('memory-date');
+        const memory1DetailEl = document.getElementById('memory1-detail');
+        const memory2DetailEl = document.getElementById('memory2-detail');
+        const memory3DetailEl = document.getElementById('memory3-detail');
+        const generateLetterBtn = document.getElementById('generate-letter');
+        const memoryBtns = document.querySelectorAll('.memory-btn');
+        const heartButton = document.getElementById('heart-button');
+        const heartsContainer = document.getElementById('hearts-container');
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set partner name
+            partnerNameEl.textContent = partnerData.name;
+            memoryDateEl.textContent = partnerData.firstDate;
+            
+            // Set up countdown timer
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Generate random hearts animation
+            heartButton.addEventListener('click', createHearts);
+            
+            // Memory buttons event listeners
+            memoryBtns.forEach((btn, index) => {
+                btn.addEventListener('click', () => toggleMemoryDetail(index + 1));
+            });
+            
+            // Generate personalized love letter
+            generateLetterBtn.addEventListener('click', generateLoveLetter);
+            
+            // Play video button
+            playVideoBtn.addEventListener('click', () => {
+                alert("Bu özel video mesajını gerçekte paylaşmak için hazırladım. Seninle gerçekten paylaşmayı dört gözle bekliyorum! ❤️");
+            });
+        });
+        
+        function updateCountdown() {
+            const now = new Date();
+            const nextDate = new Date(partnerData.nextDate);
+            const diff = nextDate - now;
+            
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = '<div class="text-2xl dancing-font">İyi ki doğdun ❤️</div>';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        function toggleMemoryDetail(memoryNumber) {
+            const detailEl = document.getElementById(`memory${memoryNumber}-detail`);
+            const isHidden = detailEl.classList.contains('hidden');
+            
+            // Hide all first
+            document.querySelectorAll('[id$="-detail"]').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            if (isHidden) {
+                detailEl.classList.remove('hidden');
+                switch(memoryNumber) {
+                    case 1:
+                        detailEl.innerHTML = `<p>${partnerData.name} ile ilk buluşmamız ${partnerData.firstDate} tarihinde oldu. O gün seninle tanıştığım an hayatımın en güzel anlarından biriydi. Gözlerinde gördüğüm o ışık ve içten gülümsemen beni hemen etkilemişti...</p>`;
+                        break;
+                    case 2:
+                        detailEl.innerHTML = `<p>${partnerData.favoriteMemory} O an seninle olmanın ne kadar özel olduğunu bir kez daha anlamıştım. Kalbim seninle her an daha çok atıyor...</p>`;
+                        break;
+                    case 3:
+                        detailEl.innerHTML = `<p>${partnerData.dreams} Seninle birlikte her hayalim gerçek olacak. Birlikte büyük bir aşkın ve mutluluğun resmini çizeceğiz...</p>`;
+                        break;
+                }
+            }
+        }
+        
+        function generateLoveLetter() {
+            const letters = [
+                `Sevgili ${partnerData.name},<br><br>
+                Hayatıma girdiğin ilk andan itibaren her şey daha güzel bir anlam kazandı. Seninle geçirdiğim her saniye, her dakika bana inanılmaz mutluluk veriyor. Gözlerindeki o ışık benim için dünyayı aydınlatmaya yetiyor.<br><br>
+                Beni anladığın, beni sevdiğin ve hayatıma renk kattığın için sana minnettarım. Her gün seninle uyanmak en büyük dileğim. Unutma ki kalbim her zaman seninle atacak...<br><br>
+                Sevgiyle,<br>
+                Ben`,
+                
+                `Canım ${partnerData.name},<br><br>
+                Bugün özel günün ve senin için ne yazsam az gelecek. Sen benim için sadece bir sevgili değil, aynı zamanda en iyi arkadaşım, sırdaşım ve hayat yolculuğumun en değerli parçasısın.<br><br>
+                ${partnerData.favoriteMemory} İşte bu anılar benim için çok kıymetli. Seninle geçireceğimiz yılların hayalini kurarken bile içim kıpır kıpır oluyor. Sana olan aşkım her geçen gün daha da büyüyor...<br><br>
+                Sonsuza kadar seninle olmak dileğiyle,<br>
+                Seni çok seven biri`,
+                
+                `Biricik ${partnerData.name},<br><br>
+                Doğum günün kutlu olsun! Senin gibi biriyle karşılaşmak hayatımın en güzel sürpriziydi. ${partnerData.firstDate}'den beri hayatımın her günü daha anlamlı, daha renkli.<br><br>
+                ${partnerData.dreams} Biliyorum ki bunları birlikte başaracağız çünkü seninle her şey mümkün. Gücün, kararlılığın ve sevgin beni her gün daha çok etkiliyor. İyi ki varsın, iyi ki benimlesin...<br><br>
+                Seni sonsuza kadar seveceğim,<br>
+                Senin`
+            ];
+            
+            const randomLetter = letters[Math.floor(Math.random() * letters.length)];
+            loveLetterEl.innerHTML = randomLetter;
+            generateLetterBtn.textContent = "Mektubu Yenile";
+        }
+        
+        function createHearts() {
+            heartsContainer.innerHTML = '';
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.bottom = '0';
+                heart.style.opacity = '0';
+                heart.style.transform = 'translateY(0) rotate(0deg)';
+                heart.style.transition = `all ${Math.random() * 3 + 2}s ease-out`;
+                heart.style.color = `hsl(${Math.random() * 60 + 330}, 100%, ${Math.random() * 30 + 60}%)`;
+                
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.style.opacity = '1';
+                    heart.style.transform = `translateY(-${Math.random() * 100 + 150}px) rotate(${Math.random() * 360}deg)`;
+                }, 50);
+                
+                setTimeout(() => {
+                    heart.style.opacity = '0';
+                }, 2000);
+            }
+        }
+    </script>
+
+    <!-- Resim Galerisi -->
+    <section class="mt-20 py-16 bg-gradient-to-b from-pink-50 to-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="dancing-font text-4xl md:text-5xl text-center text-pink-600 mb-12">Birlikte Geçirdiğimiz Anlar</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Resim 1 -->
+                <div class="text-center">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                        <img src="https://cdn.discordapp.com/attachments/1402561906329518170/1402563417205772298/image.png?ex=68945e79&is=68930cf9&hm=e7a42fd849ee07aa51d091b419195e21fe76150d4cafb0f9d9632308e4666752&" 
+                             alt="Özel an 1" 
+                             class="w-full h-48 object-cover">
+                    </div>
+                    <p class="mt-4 text-lg font-semibold text-gray-700">Denizden güzel manzaram sen</p>
+                </div>
+                
+                <!-- Resim 2 -->
+                <div class="text-center">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                        <img src="https://cdn.discordapp.com/attachments/1402561906329518170/1402563452974927932/image.png?ex=68945e81&is=68930d01&hm=fe6ae4862619bd07bdef7cfd769abb31cf3e22b2d5c973796593a69c47385921&" 
+                             alt="Özel an 2" 
+                             class="w-full h-48 object-cover">
+                    </div>
+                    <p class="mt-4 text-lg font-semibold text-gray-700">Güllerin içinde gözlerinde ki aşk</p>
+                </div>
+                
+                <!-- Resim 3 -->
+                <div class="text-center">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                        <img src="https://cdn.discordapp.com/attachments/1402561906329518170/1402563781518823535/image.png?ex=68945ecf&is=68930d4f&hm=b03f0bd0bafd5c8e6db57ba019afc12f2ed97870516dfc0931d2b3048b150dec&" 
+                             alt="Özel an 3" 
+                             class="w-full h-48 object-cover">
+                    </div>
+                    <p class="mt-4 text-lg font-semibold text-gray-700">Sonsuzluğun içinde seni buldum</p>
+                </div>
+                
+                <!-- Resim 4 -->
+                <div class="text-center">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                        <img src="https://cdn.discordapp.com/attachments/1402561906329518170/1402563929661767801/image.png?ex=68945ef3&is=68930d73&hm=de24bf948aa8c00bdf2065493a7b95e83521a6956010571ff677b986d979dacc&" 
+                             alt="Özel an 4" 
+                             class="w-full h-48 object-cover">
+                    </div>
+                    <p class="mt-4 text-lg font-semibold text-gray-700">Seni çok seviyorum canım karım</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="dancing-font text-2xl text-pink-500">Her anımız birer hatıra, her hatıra birer hazine...</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
