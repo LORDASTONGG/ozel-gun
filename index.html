@@ -10,7 +10,7 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #fff9f9;
+            background-color: #fcdcef;
             color: #333;
             overflow-x: hidden;
         }
@@ -91,7 +91,62 @@
         <svg class="heart-path absolute bottom-20 right-10 opacity-20" width="30" height="30" viewBox="0 0 24 24">
             <path fill="red" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
+        
+        <!-- Kalp yağmuru için ek animasyonlar -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="heart-rain absolute top-[-10%] left-[10%] animate-fall" style="animation-delay: 0s;">
+                <svg width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="red" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="heart-rain absolute top-[-10%] left-[30%] animate-fall" style="animation-delay: 1s;">
+                <svg width="15" height="15" viewBox="0 0 24 24">
+                    <path fill="red" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="heart-rain absolute top-[-10%] left-[50%] animate-fall" style="animation-delay: 2s;">
+                <svg width="25" height="25" viewBox="0 0 24 24">
+                    <path fill="red" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="heart-rain absolute top-[-10%] left-[70%] animate-fall" style="animation-delay: 0.5s;">
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                    <path fill="red" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            <div class="heart-rain absolute top-[-10%] left-[90%] animate-fall" style="animation-delay: 1.5s;">
+                <svg width="22" height="22" viewBox="0 0 24 24">
+                    <path fill="red" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+        </div>
     </div>
+    
+    <style>
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .heart-rain {
+            animation: fall linear infinite;
+            animation-duration: 8s;
+        }
+        
+        .heart-rain:nth-child(odd) {
+            animation-duration: 10s;
+        }
+        
+        .heart-rain:nth-child(3n) {
+            animation-duration: 12s;
+        }
+    </style>
 
     <main class="relative z-10 container mx-auto px-4 py-12 max-w-4xl">
         <!-- Header -->
@@ -433,6 +488,52 @@
             </div>
         </div>
     </section>
+    <!-- ❤️ Kalp Yağmuru Başlangıç -->
+<style>
+@keyframes fallHeart {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+</style>
+<script>
+// ❤️ Dinamik Kalp Yağmuru Efekti
+function createEmojiHeart() {
+    const heart = document.createElement("div");
+    heart.innerText = "💖💞";
+    heart.style.position = "fixed";
+    heart.style.top = "-50px";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    heart.style.opacity = "0.2";
+    heart.style.animation = "fallHeart " + (Math.random() * 5 + 5).toFixed(2) + "s linear forwards";
+    heart.style.zIndex = "1";
+    heart.style.pointerEvents = "none";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}
+setInterval(createEmojiHeart, 400);
+</script>
+<!-- ❤️ Kalp Yağmuru Bitiş -->
+
+<script>
+// ❤️ Dinamik Kalp Yağmuru Efekti
+function createEmojiHeart() {
+    const heart = document.createElement("div");
+    heart.innerText = "🍯";
+    heart.style.position = "fixed";
+    heart.style.top = "+50px";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    heart.style.opacity = "0.01";
+    heart.style.animation = "fallHeart " + (Math.random() * 10 + 10).toFixed(2) + "s linear forwards";
+    heart.style.zIndex = "1";
+    heart.style.pointerEvents = "none";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}
+setInterval(createEmojiHeart, 1000);
+</script>
+
 </body>
 </html>
 
