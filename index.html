@@ -6,7 +6,7 @@
     <title>Sevgi Dolu Bir Hediye | Senin İçin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&family=Montserrat:wght@400;600&display=swap');
         
         body {
             font-family: 'Montserrat', sans-serif;
@@ -44,6 +44,38 @@
         
         #polaroid:hover {
             transform: rotate(5deg) scale(1.05);
+        }
+
+        /* Image Zoom Styles */
+        .zoom-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .zoom-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .zoomable {
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .zoomable:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -300,6 +332,53 @@
                 }, 2000);
             }
         }
+    </script>
+
+    <!-- Image Zoom Overlay -->
+    <div class="zoom-overlay" id="zoomOverlay">
+        <img id="zoomedImage" src="" alt="Zoomed image">
+    </div>
+
+    <!-- Image Zoom JavaScript -->
+    <script>
+        // Image zoom functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            const zoomOverlay = document.getElementById('zoomOverlay');
+            const zoomedImage = document.getElementById('zoomedImage');
+            
+            // Add zoomable class to all images except background hearts
+            images.forEach(img => {
+                if (!img.closest('.heart-path')) {
+                    img.classList.add('zoomable');
+                    
+                    img.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        zoomImage(this);
+                    });
+                }
+            });
+            
+            function zoomImage(img) {
+                zoomedImage.src = img.src;
+                zoomOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Close zoom on overlay click
+            zoomOverlay.addEventListener('click', function() {
+                this.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close zoom on ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && zoomOverlay.style.display === 'flex') {
+                    zoomOverlay.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
     </script>
 
     <!-- Resim Galerisi -->
